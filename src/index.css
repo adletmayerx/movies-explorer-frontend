@@ -1,8 +1,16 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
-  --color-main-bg: #3ddc84;
+  --color-green-bg: #3ddc84;
+  --color-darker-bg: #202020;
+  --color-dark-bg: #303030;
   --color-landing-bg: #073042;
   --color-white-text: #fff;
+  --color-black-text: #000;
+  --color-grey-text: #a0a0a0;
 }

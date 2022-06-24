@@ -3,9 +3,9 @@ import { Landing } from "../../components";
 
 const HomePage = () => {
   return (
-    <div>
+    <>
       <Landing />
-    </div>
+    </>
   );
 };
 

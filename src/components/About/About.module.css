@@ -1,0 +1,144 @@
+.about {
+  background-color: var(--color-darker-bg);
+}
+
+.about__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 70px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.about__title {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dadada;
+  text-align: left;
+}
+
+.about__text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  margin-top: 60px;
+  gap: 60px;
+}
+
+.about__block {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.about__time-frame {
+  margin-top: 60px;
+}
+
+.time-frame {
+  display: flex;
+  justify-content: stretch;
+  align-items: flex-start;
+}
+
+.time-frame__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.time-frame__column_backend {
+  width: 100px;
+}
+
+.time-frame__column_frontend {
+  width: 180px;
+}
+
+.time-frame__cell {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 35px;
+  height: 35px;
+}
+
+.time-frame__cell_backend-time {
+  color: var(--color-black-text);
+  background-color: var(--color-green-bg);
+}
+
+.time-frame__cell_frontend-time {
+  color: var(--color-white-text);
+  background-color: var(--color-dark-bg);
+  opacity: 0.84;
+}
+
+.time-frame__cell_backend-title {
+  color: var(--color-grey-text);
+}
+
+.time-frame__cell_frontend-title {
+  color: var(--color-grey-text);
+}
+
+@media screen and (min-width: 768px) {
+  .about__container {
+    padding: 90px 50px;
+  }
+
+  .about__title {
+    padding-bottom: 25px;
+  }
+
+  .about__text-container {
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 70px;
+  }
+
+  .about__time-frame {
+    margin-top: 90px;
+  }
+
+  .time-frame__column_backend {
+    width: 140px;
+  }
+
+  .time-frame__column_frontend {
+    width: 528px;
+  }
+
+  .time-frame__cell {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about__container {
+    padding: 110px 70px;
+  }
+
+  .about__text-container {
+    gap: 40px;
+  }
+
+  .about__time-frame {
+    margin-top: 110px;
+  }
+
+  .time-frame__column_backend {
+    width: 228px;
+  }
+
+  .time-frame__column_frontend {
+    width: 912px;
+  }
+}

@@ -26,7 +26,7 @@
 
 .auth-nav__sign-in-btn {
   padding: 5px 12px;
-  background-color: var(--color-main-bg);
+  background-color: var(--color-green-bg);
   border-radius: 3px;
 }
 
