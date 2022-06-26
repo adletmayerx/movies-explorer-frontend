@@ -94,3 +94,7 @@
 .socials__link:hover {
   opacity: .6;
 }
+
+.student__portfolio {
+  margin-top: 70px;
+}
