@@ -7,7 +7,8 @@
 
 :root {
   --color-green-bg: #3ddc84;
-  --color-darker-bg: #202020;
+  --color-darkest-bg: #202020;
+  --color-darker-bg: #272727;
   --color-dark-bg: #303030;
   --color-landing-bg: #073042;
   --color-white-text: #fff;

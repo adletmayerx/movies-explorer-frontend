@@ -1,3 +1,4 @@
 import MemoLogoComponent from "./LogoComponent";
+import MemoAnchorIconComponent from "./AnchorIconComponent";
 
-export { MemoLogoComponent };
+export { MemoLogoComponent, MemoAnchorIconComponent };

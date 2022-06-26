@@ -1,5 +1,5 @@
 .about {
-  background-color: var(--color-darker-bg);
+  background-color: var(--color-darkest-bg);
 }
 
 .about__container {
@@ -54,10 +54,12 @@
 
 .time-frame__column_backend {
   width: 100px;
+  flex-grow: 1;
 }
 
 .time-frame__column_frontend {
   width: 180px;
+  flex-grow: 4;
 }
 
 .time-frame__cell {
