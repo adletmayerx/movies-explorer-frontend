@@ -27,16 +27,18 @@ const Student = () => {
             <ul className={cn(styles.info__socials, styles.socials)}>
               <li className={styles["socials__list-item"]}>
                 <a
+                  target="_blank"
                   href="https://t.me/sadrtdinov_a"
-                  className={styles.socials__link}
+                  className={styles.socials__link} rel="noreferrer"
                 >
                   Telegram
                 </a>
               </li>
               <li className={styles["socials__list-item"]}>
                 <a
+                  target="_blank"
                   href="https://github.com/asadrtdinov"
-                  className={styles.socials__link}
+                  className={styles.socials__link} rel="noreferrer"
                 >
                   Github
                 </a>
@@ -49,8 +51,9 @@ const Student = () => {
           <ul className={cn(styles.portfolio__cases, styles.cases)}>
             <li className={styles["cases__list-item"]}>
               <a
+                target="_blank"
                 href="https://asadrtdinov.github.io/how-to-learn/"
-                className={styles.cases__link}
+                className={styles.cases__link} rel="noreferrer"
               >
                 <span className={styles["cases__link-text"]}>
                   Статичный сайт
@@ -60,8 +63,9 @@ const Student = () => {
             </li>
             <li className={styles["cases__list-item"]}>
               <a
+                target="_blank"
                 href="https://asadrtdinov.github.io/russian-travel/index.html"
-                className={styles.cases__link}
+                className={styles.cases__link} rel="noreferrer"
               >
                 <span className={styles["cases__link-text"]}>
                   Адаптивный сайт
@@ -71,8 +75,9 @@ const Student = () => {
             </li>
             <li className={styles["cases__list-item"]}>
               <a
+                target="_blank"
                 href="https://asadrtdinov.github.io/react-mesto-auth"
-                className={styles.cases__link}
+                className={styles.cases__link} rel="noreferrer"
               >
                 <span className={styles["cases__link-text"]}>
                   Одностраничное приложение

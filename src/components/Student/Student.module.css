@@ -87,7 +87,6 @@
   font-size: 14px;
   line-height: 17px;
   color: var(--color-white-text);
-  cursor: pointer;
   transition: opacity 0.2s ease-in;
 }
 
