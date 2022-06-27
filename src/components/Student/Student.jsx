@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./Student.module.css";
 import cn from "classnames";
-import { SectionTitle, BlockTitle, Text } from "../shared";
-import { MemoAnchorIconComponent } from "../icons";
+import { SectionTitle, Text } from "../shared";
 import photo from "../../images/student-photo.jpg";
 
 const Student = () => {
@@ -49,23 +48,36 @@ const Student = () => {
           <h3 className={styles.portfolio__title}>Портфолио</h3>
           <ul className={cn(styles.portfolio__cases, styles.cases)}>
             <li className={styles["cases__list-item"]}>
-              <a href="#" className={styles.cases__link}>
-                Статичный сайт
-                <MemoAnchorIconComponent
-                  className={styles["cases__link-item"]}
-                />
+              <a
+                href="https://asadrtdinov.github.io/how-to-learn/"
+                className={styles.cases__link}
+              >
+                <span className={styles["cases__link-text"]}>
+                  Статичный сайт
+                </span>
+                <span className={styles["cases__link-icon"]}>↗</span>
               </a>
-              <a href="#" className={styles.cases__link}>
-                Адаптивный сайт
-                <MemoAnchorIconComponent
-                  className={styles["cases__link-item"]}
-                />
+            </li>
+            <li className={styles["cases__list-item"]}>
+              <a
+                href="https://asadrtdinov.github.io/russian-travel/index.html"
+                className={styles.cases__link}
+              >
+                <span className={styles["cases__link-text"]}>
+                  Адаптивный сайт
+                </span>
+                <span className={styles["cases__link-icon"]}>↗</span>
               </a>
-              <a href="#" className={styles.cases__link}>
-                Одностраничное приложение
-                <MemoAnchorIconComponent
-                  className={styles["cases__link-item"]}
-                />
+            </li>
+            <li className={styles["cases__list-item"]}>
+              <a
+                href="https://asadrtdinov.github.io/react-mesto-auth"
+                className={styles.cases__link}
+              >
+                <span className={styles["cases__link-text"]}>
+                  Одностраничное приложение
+                </span>
+                <span className={styles["cases__link-icon"]}>↗</span>
               </a>
             </li>
           </ul>

@@ -27,6 +27,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  gap: 40px;
 }
 
 .info__image {
@@ -37,7 +38,6 @@
 }
 
 .info__text-container {
-  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -88,13 +88,159 @@
   line-height: 17px;
   color: var(--color-white-text);
   cursor: pointer;
-  transition: opacity .2s ease-in;
+  transition: opacity 0.2s ease-in;
 }
 
 .socials__link:hover {
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .student__portfolio {
   margin-top: 70px;
+}
+
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.portfolio__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--color-grey-text);
+  text-align: left;
+}
+
+.cases {
+  list-style-type: none;
+  padding: 0;
+  margin: 40px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 20px;
+}
+
+.cases__list-item {
+  margin: 0;
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.cases__link {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: -0.04em;
+  color: var(--color-white-text);
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+  .student__container {
+    padding: 90px 50px;
+  }
+
+  .student__title {
+    padding-bottom: 25px;
+  }
+
+  .student__info {
+    margin-top: 65px;
+  }
+
+  .info {
+    gap: 50px;
+    flex-direction: row-reverse;
+  }
+
+  .info__image {
+    width: 255px;
+    height: 307px;
+  }
+
+  .info__title {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .info__sub-title {
+    font-size: 12px;
+    line-height: 18px;
+    margin: 15px 0 0;
+  }
+
+  .socials {
+    margin: 90px 0 0;
+    gap: 20px;
+  }
+
+  .student__portfolio {
+    margin-top: 90px;
+  }
+
+  .portfolio__title {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .cases {
+    margin: 50px 0 0;
+  }
+
+  .cases__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .student__container {
+    padding: 110px 70px;
+  }
+
+  .info {
+    gap: 270px;
+  }
+
+  .info__image {
+    width: 270px;
+    height: 327px;
+  }
+
+  .info__title {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .info__sub-title {
+    margin: 20px 0 0;
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .info__text {
+    margin-top: 25px;
+  }
+
+  .socials {
+    margin: 100px 0 0;
+  }
+
+  .student__portfolio {
+    margin-top: 100px;
+  }
+
+  .cases__link {
+    font-size: 30px;
+    line-height: 50px;
+  }
 }
