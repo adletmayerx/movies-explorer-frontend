@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./HeaderContent.module.css";
-import cn from "classnames";
 import { Link } from "react-router-dom";
 import { MemoMenuIcon, MemoAccountIcon } from "../../icons";
 import { Nav } from "../";
