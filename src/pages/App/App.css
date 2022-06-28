@@ -1,5 +1,5 @@
 .App {
-  background-color: #fff;
+  background-color: var(--color-darkest-bg);
   color: #000;
 
   font-family: "Inter", "Arial", sans-serif;

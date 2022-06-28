@@ -3,6 +3,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 15px;
+  margin-left: auto;
 }
 
 .auth-nav__btn {
