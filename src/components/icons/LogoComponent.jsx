@@ -2,7 +2,7 @@ import * as React from "react";
 
 function LogoComponent(props) {
   return (
-    <svg width={38} height={38} fill="none" {...props}>
+    <svg width={40} height={38} fill="none" {...props}>
       <path
         d="M0 19C0 8.507 8.507 0 19 0s19 8.507 19 19-8.507 19-19 19S0 29.493 0 19z"
         fill="#3DDC84"
