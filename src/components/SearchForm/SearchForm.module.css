@@ -3,6 +3,7 @@
 }
 
 .search__container {
+  max-width: 1280px;
   padding: 80px 15px 10px;
   margin: 0 auto;
 }
@@ -75,5 +76,11 @@
   .search__input::placeholder {
     font-size: 14px;
     line-height: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .search__container {
+    padding: 80px 70px 10px;
   }
 }

@@ -6,6 +6,8 @@ import Button from "./Button/Button";
 import SectionTitle from "./SectionTitle/SectionTitle";
 import BlockTitle from "./BlockTitle/BlockTitle";
 import Text from "./Text/Text";
+import MoviesCards from "./MoviesCards/MoviesCards";
+import MoviesCard from "./MoviesCard/MoviesCard";
 
 export {
   Header,
@@ -16,4 +18,6 @@ export {
   SectionTitle,
   BlockTitle,
   Text,
+  MoviesCards,
+  MoviesCard,
 };

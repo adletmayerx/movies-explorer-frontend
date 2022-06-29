@@ -1,6 +1,6 @@
 import React from "react";
-import { SearchForm } from "../../components";
-import { Header, HeaderContent } from "../../components/shared";
+import { Movies } from "../../components";
+import { Header, HeaderContent, Footer } from "../../components/shared";
 
 const MoviesPage = () => {
   return (
@@ -8,7 +8,8 @@ const MoviesPage = () => {
       <Header>
         <HeaderContent />
       </Header>
-      <SearchForm />
+      <Movies />
+      <Footer />
     </>
   );
 };
