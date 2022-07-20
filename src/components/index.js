@@ -7,6 +7,9 @@ import Student from "./Student/Student";
 import Movies from "./Movies/Movies";
 import SearchForm from "./SearchForm/SearchForm";
 import Switch from "./Switch/Switch";
+import SavedMovies from "./SavedMovies/SavedMovies";
+import SavedMoviesList from "./SavedMoviesList/SavedMoviesList";
+import SavedMoviesCard from "./SavedMoviesCard/SavedMoviesCard";
 
 export {
   Landing,
@@ -18,4 +21,7 @@ export {
   Movies,
   SearchForm,
   Switch,
+  SavedMovies,
+  SavedMoviesList,
+  SavedMoviesCard,
 };
