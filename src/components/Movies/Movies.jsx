@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Movies.module.css";
 import { SearchForm } from "../";
-import { Button, MoviesCards } from "../shared";
+import { Button, MoviesCardList } from "../shared";
 import movieImage from "../../images/movies-card-image.png";
 
 const Movies = () => {
@@ -39,7 +39,7 @@ const Movies = () => {
   return (
     <main className={styles.movies}>
       <SearchForm />
-      <MoviesCards cards={cards} />
+      <MoviesCardList cards={cards} />
       <Button
         type="button"
         className={styles["movies__more-btn"]}

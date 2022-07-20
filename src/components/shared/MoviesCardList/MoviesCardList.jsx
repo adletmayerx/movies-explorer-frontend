@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./MoviesCards.module.css";
-import { MoviesCard } from "../";
+import styles from "./MoviesCardList.module.css";
+import { MoviesCard } from "..";
 
-const MoviesCards = ({ cards }) => {
+const MoviesCardList = ({ cards }) => {
   return (
     <div className={styles.cards}>
       <ul className={styles.cards__list}>
@@ -23,4 +23,4 @@ const MoviesCards = ({ cards }) => {
   );
 };
 
-export default MoviesCards;
+export default MoviesCardList;

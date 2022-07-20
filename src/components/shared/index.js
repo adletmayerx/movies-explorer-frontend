@@ -6,7 +6,7 @@ import Button from "./Button/Button";
 import SectionTitle from "./SectionTitle/SectionTitle";
 import BlockTitle from "./BlockTitle/BlockTitle";
 import Text from "./Text/Text";
-import MoviesCards from "./MoviesCards/MoviesCards";
+import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import MoviesCard from "./MoviesCard/MoviesCard";
 
 export {
@@ -18,6 +18,6 @@ export {
   SectionTitle,
   BlockTitle,
   Text,
-  MoviesCards,
+  MoviesCardList,
   MoviesCard,
 };
