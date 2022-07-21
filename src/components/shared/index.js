@@ -8,6 +8,7 @@ import BlockTitle from "./BlockTitle/BlockTitle";
 import Text from "./Text/Text";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import MoviesCard from "./MoviesCard/MoviesCard";
+import AuthTitle from "./AuthTitle/AuthTitle";
 
 export {
   Header,
@@ -20,4 +21,5 @@ export {
   Text,
   MoviesCardList,
   MoviesCard,
+  AuthTitle
 };

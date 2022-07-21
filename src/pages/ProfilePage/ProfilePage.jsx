@@ -1,4 +1,5 @@
 import React from "react";
+import { Profile } from "../../components";
 import { Header, HeaderContent } from "../../components/shared";
 
 const ProfilePage = () => {
@@ -7,6 +8,7 @@ const ProfilePage = () => {
       <Header>
         <HeaderContent />
       </Header>
+      <Profile />
     </>
   );
 };

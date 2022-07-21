@@ -10,6 +10,7 @@ import Switch from "./Switch/Switch";
 import SavedMovies from "./SavedMovies/SavedMovies";
 import SavedMoviesList from "./SavedMoviesList/SavedMoviesList";
 import SavedMoviesCard from "./SavedMoviesCard/SavedMoviesCard";
+import Profile from "./Profile/Profile";
 
 export {
   Landing,
@@ -24,4 +25,5 @@ export {
   SavedMovies,
   SavedMoviesList,
   SavedMoviesCard,
+  Profile,
 };
