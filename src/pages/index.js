@@ -4,6 +4,7 @@ import SavedMoviesPage from "./SavedMoviesPage/SavedMoviesPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import RegisterPage from "./RegisterPage/RegisterPage";
 import LoginPage from "./LoginPage/LoginPage";
+import NotFoundPage from "./NotFoundPage/NotFoundPage";
 
 export {
   HomePage,
@@ -12,4 +13,5 @@ export {
   ProfilePage,
   RegisterPage,
   LoginPage,
+  NotFoundPage
 };

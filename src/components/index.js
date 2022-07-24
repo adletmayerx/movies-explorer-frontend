@@ -14,6 +14,7 @@ import Profile from "./Profile/Profile";
 import AuthHeader from "./AuthHeader/AuthHeader";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
+import NotFound from "./NotFound/NotFound";
 
 export {
   Landing,
@@ -32,4 +33,5 @@ export {
   Register,
   AuthHeader,
   Login,
+  NotFound,
 };
