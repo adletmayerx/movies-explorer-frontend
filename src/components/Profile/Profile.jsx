@@ -5,7 +5,7 @@ import { AuthTitle } from "../shared";
 const Profile = () => {
   return (
     <main className={styles.profile}>
-      <AuthTitle title={"Привет, Артур!"} />
+      <AuthTitle>Привет, Артур!</AuthTitle>
       <div className={styles.profile__info}>
         <div className={styles.profile__row}>
           <span>Имя</span>

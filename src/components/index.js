@@ -11,6 +11,8 @@ import SavedMovies from "./SavedMovies/SavedMovies";
 import SavedMoviesList from "./SavedMoviesList/SavedMoviesList";
 import SavedMoviesCard from "./SavedMoviesCard/SavedMoviesCard";
 import Profile from "./Profile/Profile";
+import AuthHeader from "./AuthHeader/AuthHeader";
+import Register from "./Register/Register";
 
 export {
   Landing,
@@ -26,4 +28,6 @@ export {
   SavedMoviesList,
   SavedMoviesCard,
   Profile,
+  Register,
+  AuthHeader,
 };

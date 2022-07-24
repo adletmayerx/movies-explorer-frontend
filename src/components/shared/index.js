@@ -21,5 +21,5 @@ export {
   Text,
   MoviesCardList,
   MoviesCard,
-  AuthTitle
+  AuthTitle,
 };

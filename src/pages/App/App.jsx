@@ -1,6 +1,12 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { HomePage, MoviesPage, SavedMoviesPage, ProfilePage } from "../";
+import {
+  HomePage,
+  MoviesPage,
+  SavedMoviesPage,
+  ProfilePage,
+  RegisterPage,
+} from "../";
 
 const App = () => {
   return (
@@ -10,6 +16,7 @@ const App = () => {
         <Route path="/movies" element={<MoviesPage />} />
         <Route path="/saved-movies" element={<SavedMoviesPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/signup" element={<RegisterPage />} />
       </Routes>
     </div>
   );

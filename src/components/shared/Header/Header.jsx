@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./Header.module.css";
 import { MemoLogoComponent } from "../../icons";
+import cn from "classnames";
 
-const Header = ({ children }) => {
+const Header = ({ children, className }) => {
   return (
-    <div className={styles.header}>
+    <div className={cn(styles.header, className)}>
       <MemoLogoComponent />
       {children}
     </div>
