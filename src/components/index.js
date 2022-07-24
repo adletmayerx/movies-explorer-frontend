@@ -13,6 +13,7 @@ import SavedMoviesCard from "./SavedMoviesCard/SavedMoviesCard";
 import Profile from "./Profile/Profile";
 import AuthHeader from "./AuthHeader/AuthHeader";
 import Register from "./Register/Register";
+import Login from "./Login/Login";
 
 export {
   Landing,
@@ -30,4 +31,5 @@ export {
   Profile,
   Register,
   AuthHeader,
+  Login,
 };

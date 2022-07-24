@@ -6,6 +6,7 @@ import {
   SavedMoviesPage,
   ProfilePage,
   RegisterPage,
+  LoginPage,
 } from "../";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/saved-movies" element={<SavedMoviesPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/signin" element={<LoginPage />} />
       </Routes>
     </div>
   );
