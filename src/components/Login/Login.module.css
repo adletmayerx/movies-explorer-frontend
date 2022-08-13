@@ -71,7 +71,7 @@
   gap: 7px;
 }
 
-.login__logined {
+.login__logged-in {
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
@@ -98,7 +98,7 @@
     font-size: 14px;
   }
 
-  .login__logined {
+  .login__logged-in {
     font-size: 14px;
     line-height: 17px;
   }

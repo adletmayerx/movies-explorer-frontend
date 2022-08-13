@@ -8,31 +8,21 @@ const Login = () => {
       <form name="login-form" className={styles.login__form}>
         <label className={styles.login__label}>
           <span className={styles.login__span}>E-mail</span>
-          <input
-            type="email"
-            name="login-email"
-            className={styles.login__input}
-          />
+          <input type="email" name="login-email" className={styles.login__input} />
           <span className={styles.login__error}>Имя</span>
         </label>
         <label className={styles.login__label}>
           <span className={styles.login__span}>Пароль</span>
-          <input
-            type="password"
-            name="login-password"
-            className={styles.login__input}
-          />
+          <input type="password" name="login-password" className={styles.login__input} />
           <span className={styles.login__error}>Имя</span>
         </label>
         <button type="submit" className={styles.login__submit}>
-          Зарегистрироваться
+          Войти
         </button>
         <p className={styles["login__link-container"]}>
-          <span className={styles.login__logined}>
-            Ещё не зарегистрированы?
-          </span>
-          <Link className={styles.login__link} to="/profile">
-            Войти
+          <span className={styles['login__logged-in']}>Ещё не зарегистрированы?</span>
+          <Link className={styles.login__link} to="/signup">
+            Зарегистрироваться
           </Link>
         </p>
       </form>

@@ -9,6 +9,7 @@ import Text from "./Text/Text";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import MoviesCard from "./MoviesCard/MoviesCard";
 import AuthTitle from "./AuthTitle/AuthTitle";
+import ButtonWithIcon from "./ButtonWithIcon/ButtonWithIcon";
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   MoviesCardList,
   MoviesCard,
   AuthTitle,
+  ButtonWithIcon
 };

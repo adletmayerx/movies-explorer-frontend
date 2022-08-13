@@ -38,7 +38,7 @@ const Register = () => {
         </button>
         <p className={styles["register__link-container"]}>
           <span className={styles.register__registered}>Уже зарегистрированы?</span>
-          <Link className={styles.register__link} to="/profile">
+          <Link className={styles.register__link} to="/signin">
             Войти
           </Link>
         </p>

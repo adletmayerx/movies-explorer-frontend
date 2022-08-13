@@ -4,14 +4,13 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   padding: 70px 30px 40px;
 }
 
 .profile__info {
   margin-top: 80px;
   display: flex;
-  width: 100%;
   flex-direction: column;
   justify-content: flex-start;
   font-weight: 500;

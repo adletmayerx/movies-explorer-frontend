@@ -15,6 +15,7 @@ import AuthHeader from "./AuthHeader/AuthHeader";
 import Register from "./Register/Register";
 import Login from "./Login/Login";
 import NotFound from "./NotFound/NotFound";
+import PopupMenu from "./PopupMenu/PopupMenu";
 
 export {
   Landing,
@@ -34,4 +35,5 @@ export {
   AuthHeader,
   Login,
   NotFound,
+  PopupMenu,
 };

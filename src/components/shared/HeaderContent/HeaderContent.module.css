@@ -39,6 +39,10 @@
   .content__menu {
     display: none;
   }
+
+  .content__button {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1279px) {
