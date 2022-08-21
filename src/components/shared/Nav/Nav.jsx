@@ -13,7 +13,7 @@ const Nav = ({ className }) => {
           </Link>
         </li>
         <li className={styles["nav__list-item"]}>
-          <Link to="/saved" className={styles.nav__link}>
+          <Link to="/saved-movies" className={styles.nav__link}>
             Сохранённые фильмы
           </Link>
         </li>

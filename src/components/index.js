@@ -16,6 +16,7 @@ import Register from "./Register/Register";
 import Login from "./Login/Login";
 import NotFound from "./NotFound/NotFound";
 import PopupMenu from "./PopupMenu/PopupMenu";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
 
 export {
   Landing,
@@ -36,4 +37,5 @@ export {
   Login,
   NotFound,
   PopupMenu,
+  ProtectedRoute,
 };

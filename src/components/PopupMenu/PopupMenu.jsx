@@ -14,7 +14,6 @@ const PopupMenu = ({ onCloseButtonClick, popupIsActive }) => {
         </ButtonWithIcon>
         <div className={styles.popup__links}>
           <NavLink
-            exact
             className={({ isActive }) =>
               isActive ? cn(styles.popup__link, styles.popup__link_active) : styles.popup__link
             }
@@ -23,7 +22,6 @@ const PopupMenu = ({ onCloseButtonClick, popupIsActive }) => {
             Главная
           </NavLink>
           <NavLink
-            exact
             className={({ isActive }) =>
               isActive ? cn(styles.popup__link, styles.popup__link_active) : styles.popup__link
             }
@@ -32,7 +30,6 @@ const PopupMenu = ({ onCloseButtonClick, popupIsActive }) => {
             Фильмы
           </NavLink>
           <NavLink
-            exact
             className={({ isActive }) =>
               isActive ? cn(styles.popup__link, styles.popup__link_active) : styles.popup__link
             }
