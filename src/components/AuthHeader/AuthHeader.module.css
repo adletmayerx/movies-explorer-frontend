@@ -1,0 +1,23 @@
+.auth-header {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 55px 0px 80px;
+  gap: 50px;
+  max-width: 260px;
+}
+
+@media screen and (min-width: 768px) {
+  .auth-header {
+    align-items: flex-start;
+    gap: 40px;
+    padding: 230px 0 110px;
+    max-width: 400px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .auth-header {
+    padding: 70px 0 40px;
+  }
+}

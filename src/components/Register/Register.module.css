@@ -1,0 +1,117 @@
+.register {
+  max-width: 260px;
+  margin: 0 auto;
+  padding-bottom: 30px;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.register__label {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.register__label + .register__label {
+  margin-top: 20px;
+}
+
+.register__span {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--color-suva-grey-text);
+}
+
+.register__input {
+  padding: 15px;
+  height: 45px;
+  width: 100%;
+  background: var(--color-black-input-bg);
+  border-radius: 8px;
+  border: none;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 45px;
+  color: var(--color-white-text);
+}
+
+.register__error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: var(--color-red-text);
+  visibility: hidden;
+}
+
+.register__submit {
+  height: 45px;
+  width: 100%;
+  margin-top: 160px;
+  background: var(--color-blue-btn-bg);
+  border-radius: 3px;
+  border: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 45px;
+  text-align: center;
+  color: var(--color-white-text);
+}
+
+.register__link-container {
+  margin: 15px auto 0;
+  display: flex;
+  justify-content: flex-start;
+  gap: 7px;
+}
+
+.register__registered {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: var(--color-suva-grey-text);
+}
+
+.register__link {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: var(--color-blue-btn-bg);
+}
+
+@media screen and (min-width: 768px) {
+  .register {
+    max-width: 400px;
+    padding-bottom: 230px;
+  }
+
+  .register__submit {
+    margin-top: 70px;
+    font-size: 14px;
+  }
+
+  .register__registered {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .register__link {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .register {
+    max-width: 400px;
+    padding-bottom: 70px;
+  }
+}

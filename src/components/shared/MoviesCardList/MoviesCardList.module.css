@@ -1,0 +1,33 @@
+.cards {
+  background-color: var(--color-darkest-bg);
+}
+
+.cards__list {
+  max-width: 1280px;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 40px 10px 25px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.cards__list-item {
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .cards__list {
+    padding: 70px 30px 30px;
+    gap: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .cards__list {
+    padding: 70px 70px 10px;
+    gap: 25px;
+  }
+}

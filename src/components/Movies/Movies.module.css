@@ -1,0 +1,37 @@
+.movies {
+  background-color: var(--color-darkest-bg);
+  padding: 0 0 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.movies__more-btn {
+  padding: 0;
+  margin: 50px auto 0;
+  background-color: var(--color-black-input-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--color-white-text);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .movies {
+    padding: 0 0 90px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movies {
+    padding: 0 0 80px;
+  }
+}
