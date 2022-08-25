@@ -21,7 +21,7 @@ const SavedMoviesCard = ({ image, nameRU, duration, id, handleDeleteButtonClick 
   const formattedDuration = formatDuration();
   return (
     <div className={styles.card}>
-      <img src={image} alt="постер фильма" className={styles.card__image} />
+      <img src={image} alt={`постер фильма ${nameRU}`} className={styles.card__image} />
       <div className={styles.card__footer}>
         <div className={styles.card__info}>
           <h3 className={styles.card__title}>{nameRU}</h3>

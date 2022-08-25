@@ -28,7 +28,7 @@ const MoviesCardList = ({ cards, handleSaveButtonClick }) => {
                   nameRU={nameRU}
                   duration={duration}
                   isSaved={isSaved}
-                  movieId={movieId}
+                  movieId={id}
                   handleSaveButtonClick={handleSaveButtonClick}
                   nameEN={nameEN}
                   description={description}

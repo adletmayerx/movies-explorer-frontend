@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { ProtectedRoute } from "../../components";
@@ -11,7 +11,7 @@ import {
   LoginPage,
   NotFoundPage,
 } from "../";
-import { mainApi, moviesApi } from "../../utils/api";
+import { mainApi } from "../../utils/api";
 import currentUserContext from "../../contexts/current-user-context";
 
 const App = () => {

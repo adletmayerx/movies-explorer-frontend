@@ -43,7 +43,7 @@ const MoviesCard = ({
       image,
       trailerLink,
       thumbnail,
-      movieId,
+      movieId
     );
   };
 
@@ -51,7 +51,7 @@ const MoviesCard = ({
     <div className={styles.card}>
       <img
         src={`https://api.nomoreparties.co/${image}`}
-        alt="постер фильма"
+        alt={`постер фильма ${nameRU}`}
         className={styles.card__image}
       />
       <div className={styles.card__footer}>

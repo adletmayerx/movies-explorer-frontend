@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./SavedMovies.module.css";
 import { SearchForm, SavedMoviesList } from "../";
-import { moviesApi, mainApi } from "../../utils/api";
+import { mainApi } from "../../utils/api";
 
 const SavedMovies = () => {
   const [cards, setCards] = useState([]);
@@ -10,7 +10,7 @@ const SavedMovies = () => {
     mainApi
       .deleteMovie(id)
       .then((res) => {
-        setCards((prev) => prev.filter((card) => card !== res));
+        setCards((prev) => prev.filter((card) => card._id !== id));
       })
       .catch((e) => {
         console.error(e);

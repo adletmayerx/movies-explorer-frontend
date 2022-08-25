@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./SearchForm.module.css";
 import { Switch } from "../";
 
-const SearchForm = ({ handleSearchFormSubmit, inputValue, setInputValue, setIsShortFilms }) => {
+const SearchForm = ({ handleSearchFormSubmit, inputValue, setInputValue, setIsShortFilms, isShortFilms}) => {
   const onSubmit = (e) => {
     e.preventDefault();
     handleSearchFormSubmit();
@@ -23,7 +23,7 @@ const SearchForm = ({ handleSearchFormSubmit, inputValue, setInputValue, setIsSh
               Найти
             </button>
           </form>
-          <Switch className={styles.styles__switch} setIsShortFilms={setIsShortFilms} />
+          <Switch className={styles.styles__switch} isShortFilms={isShortFilms} setIsShortFilms={setIsShortFilms} />
         </div>
       </div>
     </div>

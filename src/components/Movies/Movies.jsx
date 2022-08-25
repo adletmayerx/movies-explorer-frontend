@@ -16,16 +16,29 @@ const Movies = () => {
   const [isLoadButtonVisible, setIsLoadButtonsVisible] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
 
+  useEffect(() => {
+    const savedMovies = JSON.parse(localStorage.getItem(`${currentUser._id}_movies`));
+    const savedQuery = JSON.parse(localStorage.getItem(`${currentUser._id}_searchQuery`));
+    const savedToggleValue = JSON.parse(localStorage.getItem(`${currentUser._id}_isShortFilms`));
+
+    if (savedMovies) {
+      setCardsForRender(setInitialCards(savedMovies));
+      setCards(savedMovies);
+      setInputValue(savedQuery);
+      setIsShortFilms(savedToggleValue);
+    }
+  }, [currentUser._id]);
+
   const handleSearchFormSubmit = () => {
     moviesApi
       .getMovies()
       .then((res) => {
         const movies = defineLikes(res, savedCards);
+        const filteredMovies = filterResults(movies, inputValue, isShortFilms);
 
-        localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(movies));
+        localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
         localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
         localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
-        const filteredMovies = filterResults(movies, inputValue, isShortFilms);
         setCardsForRender(setInitialCards(filteredMovies));
 
         setCards(filteredMovies);
@@ -49,7 +62,6 @@ const Movies = () => {
     return cards.map((card) => {
       const isSaved = savedCards.find((savedCard) => savedCard.movieId === card.id);
       if (isSaved) {
-        debugger;
         return { ...card, isSaved };
       } else {
         return card;
@@ -93,11 +105,13 @@ const Movies = () => {
     thumbnail,
     movieId
   ) => {
-    if (savedCards.find((card) => card.id === movieId)) {
+    const savedCard = savedCards.find((card) => card.movieId === movieId);
+
+    if (savedCard) {
       mainApi
-        .deleteMovie(movieId)
+        .deleteMovie(savedCard._id)
         .then((res) => {
-          setSavedCards((prev) => prev.filter((card) => card !== res));
+          setSavedCards((prev) => prev.filter((card) => card._id !== savedCard._id));
           setCardsForRender((prev) =>
             prev.map((card) => (card.id === movieId ? { ...card, isSaved: false } : card))
           );
@@ -197,6 +211,7 @@ const Movies = () => {
     <main className={styles.movies}>
       <SearchForm
         handleSearchFormSubmit={handleSearchFormSubmit}
+        isShortFilms={isShortFilms}
         setIsShortFilms={setIsShortFilms}
         inputValue={inputValue}
         setInputValue={setInputValue}
