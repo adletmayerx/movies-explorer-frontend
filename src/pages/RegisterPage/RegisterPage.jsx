@@ -1,11 +1,11 @@
 import React from "react";
 import { Register, AuthHeader } from "../../components";
 
-const RegisterPage = () => {
+const RegisterPage = ({ handleRegister }) => {
   return (
     <>
       <AuthHeader />
-      <Register />
+      <Register handleRegister={handleRegister} />
     </>
   );
 };

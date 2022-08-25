@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./MoviesCardList.module.css";
 import { MoviesCard } from "..";
 
-const MoviesCardList = ({ cards }) => {
+const MoviesCardList = ({ cards, handleSaveButtonClick }) => {
   return (
     <div className={styles.cards}>
       <ul className={styles.cards__list}>
@@ -14,6 +14,8 @@ const MoviesCardList = ({ cards }) => {
                 nameRU={nameRU}
                 duration={duration}
                 isSaved={isSaved}
+                id={id}
+                handleSaveButtonClick={handleSaveButtonClick}
               />
             </li>
           );

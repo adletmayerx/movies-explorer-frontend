@@ -4,69 +4,114 @@ class MainApi {
     this._headers = headers;
   }
 
-  getUserInfo() {
-    return fetch(this._url + "/users/me", {
-      headers: this._headers,
-      credentials: "include",
-    }).then(this.checkResult);
-  }
-
-  getInitialCards() {
-    return fetch(this._url + "/cards", {
-      headers: this._headers,
-      credentials: "include",
-    }).then(this.checkResult);
-  }
-
-  editProfile(name, about) {
-    return fetch(this._url + "/users/me", {
-      method: "PATCH",
-      headers: this._headers,
-      credentials: "include",
-      body: JSON.stringify({ name, about }),
-    }).then(this.checkResult);
-  }
-
-  addCard(title, link) {
-    console.log(title, link);
-    return fetch(this._url + "/cards", {
+  register(name, email, password) {
+    return fetch(`${this._url}/signup`, {
       method: "POST",
-      headers: this._headers,
       credentials: "include",
-      body: JSON.stringify({ name: title, link: link }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        name,
+      }),
     }).then(this.checkResult);
   }
 
-  deleteCard(cardId) {
-    return fetch(this._url + "/cards/" + cardId, {
-      method: "DELETE",
-      headers: this._headers,
+  login(email, password) {
+    return fetch(`${this._url}/signin`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    }).then(this.checkResult);
+  }
+
+  logOut() {
+    return fetch(`${this._url}/signout`, {
+      method: "POST",
       credentials: "include",
     }).then(this.checkResult);
   }
 
-  addLike(cardId) {
-    return fetch(this._url + "/cards/" + cardId + "/likes", {
-      method: "PUT",
-      headers: this._headers,
+  getUserInfo() {
+    return fetch(`${this._url}/users/me`, {
+      method: "GET",
       credentials: "include",
     }).then(this.checkResult);
   }
 
-  removeLike(cardId) {
-    return fetch(this._url + "/cards/" + cardId + "/likes", {
-      method: "DELETE",
-      headers: this._headers,
-      credentials: "include",
-    }).then(this.checkResult);
-  }
-
-  editAvatar(avatar) {
-    return fetch(this._url + "/users/me/avatar", {
+  updateUserInfo(name, email) {
+    return fetch(`${this._url}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
       credentials: "include",
-      body: JSON.stringify({ avatar }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+      }),
+    }).then(this.checkResult);
+  }
+
+  // films
+
+  saveMovie(
+    nameRU,
+    nameEN,
+    description,
+    director,
+    country,
+    year,
+    duration,
+    image,
+    trailer,
+    thumbnail,
+    movieId
+  ) {
+    return fetch(`${this._url}/movies`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nameRU,
+        nameEN,
+        description,
+        director,
+        country,
+        year,
+        duration,
+        image,
+        trailer,
+        thumbnail,
+        movieId,
+      }),
+    }).then(this.checkResult);
+  }
+
+  getSavedMovies() {
+    return fetch(`${this._url}/movies`, {
+      method: "GET",
+      credentials: "include",
+    }).then(this.checkResult);
+  }
+
+  deleteMovie(movieId) {
+    return fetch(`${this._url}/movies/${movieId}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
     }).then(this.checkResult);
   }
 
@@ -80,7 +125,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  url: "https://api.artursadrtdinov.nomoredomains.rocks",
+  url: "https://api.movies-sadrtdinov.nomoredomains.xyz",
   headers: {
     Accept: "application/json",
     "Content-Type": "application/json",

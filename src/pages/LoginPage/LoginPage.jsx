@@ -1,11 +1,11 @@
 import React from "react";
 import { Login, AuthHeader } from "../../components";
 
-const LoginPage = () => {
+const LoginPage = ({handleLogin}) => {
   return (
     <>
       <AuthHeader />
-      <Login />
+      <Login handleLogin={handleLogin}/>
     </>
   );
 };

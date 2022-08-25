@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./MoviesCard.module.css";
+import { Button } from "../";
 import { MemoNotSavedIcon, MemoSavedIcon } from "../../icons";
 
-const MoviesCard = ({ image, nameRU, duration, isSaved }) => {
+const MoviesCard = ({ image, nameRU, duration, isSaved, id, handleSaveButtonClick }) => {
   const formatDuration = () => {
     let mins = duration;
     let hours = 0;
@@ -14,7 +15,12 @@ const MoviesCard = ({ image, nameRU, duration, isSaved }) => {
     return `${hours}ч ${mins}м`;
   };
 
-  const formatedDuration = formatDuration();
+  const formattedDuration = formatDuration();
+
+  const onSaveButtonClick = () => {
+    handleSaveButtonClick(id);
+  };
+
   return (
     <div className={styles.card}>
       <img
@@ -25,12 +31,19 @@ const MoviesCard = ({ image, nameRU, duration, isSaved }) => {
       <div className={styles.card__footer}>
         <div className={styles.card__info}>
           <h3 className={styles.card__title}>{nameRU}</h3>
-          <p className={styles.card__duration}>{formatedDuration}</p>
+          <p className={styles.card__duration}>{formattedDuration}</p>
         </div>
         {isSaved ? (
-          <MemoSavedIcon className={styles.card__icon} />
+          <Button
+            className={styles.card__button}
+            icon={<MemoSavedIcon />}
+            onClick={onSaveButtonClick}
+          />
         ) : (
-          <MemoNotSavedIcon className={styles.card__icon} />
+          <Button
+            className={styles.card__button}
+            icon={<MemoNotSavedIcon onClick={onSaveButtonClick} />}
+          />
         )}
       </div>
     </div>

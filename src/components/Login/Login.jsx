@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 
@@ -20,7 +20,7 @@ const Login = () => {
           Войти
         </button>
         <p className={styles["login__link-container"]}>
-          <span className={styles['login__logged-in']}>Ещё не зарегистрированы?</span>
+          <span className={styles["login__logged-in"]}>Ещё не зарегистрированы?</span>
           <Link className={styles.login__link} to="/signup">
             Зарегистрироваться
           </Link>

@@ -1,30 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import styles from "./Movies.module.css";
+import cn from "classnames";
 import { SearchForm } from "../";
 import { Button, MoviesCardList } from "../shared";
-import { moviesApi } from "../../utils/api";
+import { moviesApi, mainApi } from "../../utils/api";
 import currentUserContext from "../../contexts/current-user-context";
 import filterResults from "../../utils/filter-results";
 
 const Movies = () => {
-  const { currentUser } = useContext(currentUserContext);
+  // const { currentUser } = useContext(currentUserContext);
+  const currentUser = { id: 1 };
   const [cards, setCards] = useState([]);
   const [cardsForRender, setCardsForRender] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isShortFilms, setIsShortFilms] = useState(false);
+  const [isLoadButtonVisible, setIsLoadButtonsVisible] = useState(false);
+  const [savedCards, setSavedCards] = useState([]);
 
   const handleSearchFormSubmit = () => {
     moviesApi
       .getMovies()
       .then((res) => {
-        // localStorage.setItem(`${currentUser.id} movies`, JSON.stringify(data));
-        // localStorage.setItem(`${currentUser.id} searchQuery`, JSON.stringify(inputValue));
-        // localStorage.setItem(`${currentUser.id} isShortFilms`, JSON.stringify(isShortFilms));
+        const movies = defineLikes(res, savedCards);
 
-        const filteredMovies = filterResults(res, inputValue, isShortFilms);
-        debugger;
-        console.log(filteredMovies);
-        setCardsForRender(filteredMovies.splice(0, 3));
+        localStorage.setItem(`${currentUser.id}_movies`, JSON.stringify(movies));
+        localStorage.setItem(`${currentUser.id}_searchQuery`, JSON.stringify(inputValue));
+        localStorage.setItem(`${currentUser.id}_isShortFilms`, JSON.stringify(isShortFilms));
+
+        const filteredMovies = filterResults(movies, inputValue, isShortFilms);
+        setCardsForRender(setInitialCards(filteredMovies));
         setCards(filteredMovies);
       })
       .catch((e) => {
@@ -32,12 +36,157 @@ const Movies = () => {
       });
   };
 
-  const loadMoreCards = () => {
-    debugger;
-    const newCardsForRender = cards.filter((card, i) => i < 3);
-    setCardsForRender((prev) => prev.concat(newCardsForRender));
-    setCards((prev) => prev.filter((card, i) => i > 2));
+  const setInitialCards = (cards) => {
+    if (window.innerWidth >= 1280) {
+      cards.splice(0, 12);
+    } else if (window.innerWidth >= 768) {
+      cards.splice(0, 8);
+    } else {
+      cards.splice(0, 5);
+    }
   };
+
+  const defineLikes = (cards, savedCards) =>
+    cards.map((card) => {
+      card.isSaved = savedCards.some((savedCard) => savedCard.id === card.id);
+      return card;
+    });
+
+  const handleLoadButtonClick = () => {
+    if (cards.length === 0) {
+      return;
+    }
+
+    if (window.innerWidth >= 1280) {
+      loadMoreCards(3);
+    } else if (window.innerWidth >= 768) {
+      loadMoreCards(2);
+    } else {
+      loadMoreCards(1);
+    }
+  };
+
+  const loadMoreCards = useCallback(
+    (numberOfCards) => {
+      const newCardsForRender = cards.filter((card, i) => i < numberOfCards);
+      setCardsForRender((prev) => prev.concat(newCardsForRender));
+      setCards((prev) => prev.filter((card, i) => i >= numberOfCards));
+    },
+    [cards]
+  );
+
+  const handleSaveButtonClick = (
+    nameRU,
+    nameEN,
+    description,
+    director,
+    country,
+    year,
+    duration,
+    image,
+    trailer,
+    thumbnail,
+    movieId
+  ) => {
+    if (savedCards.find((card) => card.id === movieId)) {
+      mainApi
+        .deleteMovie(movieId)
+        .then((res) => {
+          setSavedCards((prev) => prev.filter((card) => card !== res));
+          setCardsForRender((prev) =>
+            prev.map((card) => (card.id === movieId ? { ...card, isSaved: false } : card))
+          );
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    } else {
+      mainApi
+        .saveMovie(
+          nameRU,
+          nameEN,
+          description,
+          director,
+          country,
+          year,
+          duration,
+          image,
+          trailer,
+          thumbnail,
+          movieId
+        )
+        .then((res) => {
+          setSavedCards((prev) => prev.push(res));
+          setCardsForRender((prev) =>
+            prev.map((card) => (card.id === movieId ? { ...card, isSaved: true } : card))
+          );
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  };
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies()
+      .then((res) => {
+        setSavedCards(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
+
+  useEffect(() => {
+    let resizeTimeout;
+
+    const handleWindowResize = () => {
+      if (cards.length === 0) {
+        return;
+      }
+
+      clearTimeout(resizeTimeout);
+
+      if (window.innerWidth >= 1280) {
+        if (cardsForRender.length >= 12 || cards.length === 0) {
+          return;
+        }
+
+        const numberOfCards = 12 - cardsForRender.length;
+
+        resizeTimeout = setTimeout(() => loadMoreCards(numberOfCards), 400);
+      } else if (window.innerWidth >= 768) {
+        if (cardsForRender.length >= 8 || cards.length === 0) {
+          return;
+        }
+        const numberOfCards = 8 - cardsForRender.length;
+
+        resizeTimeout = setTimeout(() => loadMoreCards(numberOfCards), 400);
+      } else {
+        if (cardsForRender.length >= 5 || cards.length === 0) {
+          return;
+        }
+        const numberOfCards = 5 - cardsForRender.length;
+
+        resizeTimeout = setTimeout(() => loadMoreCards(numberOfCards), 400);
+      }
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [cards?.length, cardsForRender?.length, loadMoreCards]);
+
+  useEffect(() => {
+    if (cards.length === 0) {
+      setIsLoadButtonsVisible(false);
+    } else {
+      setIsLoadButtonsVisible(true);
+    }
+  }, [cards]);
 
   return (
     <main className={styles.movies}>
@@ -47,12 +196,14 @@ const Movies = () => {
         inputValue={inputValue}
         setInputValue={setInputValue}
       />
-      <MoviesCardList cards={cardsForRender} />
+      <MoviesCardList cards={cardsForRender} handleSaveButtonClick={handleSaveButtonClick} />
       <Button
         type="button"
-        className={styles["movies__more-btn"]}
+        className={cn(styles["movies__more-btn"], {
+          [styles["movies__more-btn_hidden"]]: !isLoadButtonVisible,
+        })}
         text={"Ещё"}
-        onClick={loadMoreCards}
+        onClick={handleLoadButtonClick}
       />
     </main>
   );
