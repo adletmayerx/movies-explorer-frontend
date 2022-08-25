@@ -40,6 +40,7 @@ const Register = ({ handleRegister }) => {
             className={styles.register__input}
             value={name}
             onChange={handleNameChange}
+            required
           />
           <span className={styles.register__error}>Имя</span>
         </label>
@@ -51,6 +52,7 @@ const Register = ({ handleRegister }) => {
             className={styles.register__input}
             value={email}
             onChange={handleEmailChange}
+            required
           />
           <span className={styles.register__error}>E-mail</span>
         </label>
@@ -62,6 +64,7 @@ const Register = ({ handleRegister }) => {
             className={styles.register__input}
             value={password}
             onChange={handlePasswordChange}
+            required
           />
           <span className={styles.register__error}>Пароль</span>
         </label>

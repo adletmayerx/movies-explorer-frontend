@@ -35,6 +35,7 @@ const Login = ({ handleLogin }) => {
             className={styles.login__input}
             value={email}
             onChange={handleEmailChange}
+            required
           />
           <span className={styles.login__error}>Имя</span>
         </label>
@@ -46,6 +47,7 @@ const Login = ({ handleLogin }) => {
             className={styles.login__input}
             value={password}
             onChange={handlePasswordChange}
+            required
           />
           <span className={styles.login__error}>Имя</span>
         </label>

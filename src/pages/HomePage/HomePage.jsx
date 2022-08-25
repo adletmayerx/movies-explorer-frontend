@@ -1,10 +1,10 @@
 import React from "react";
 import { Landing } from "../../components";
 
-const HomePage = () => {
+const HomePage = ({isLoggedIn}) => {
   return (
     <>
-      <Landing />
+      <Landing isLoggedIn={isLoggedIn} />
     </>
   );
 };

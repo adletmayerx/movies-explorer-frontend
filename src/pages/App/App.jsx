@@ -61,7 +61,7 @@ const App = () => {
     <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
           <Route
             path="/movies"
             element={<ProtectedRoute loggedIn={isLoggedIn} component={MoviesPage} />}

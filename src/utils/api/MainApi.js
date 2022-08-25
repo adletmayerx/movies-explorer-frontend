@@ -35,7 +35,7 @@ class MainApi {
 
   logOut() {
     return fetch(`${this._url}/signout`, {
-      method: "POST",
+      method: "DELETE",
       credentials: "include",
     }).then(this.checkResult);
   }

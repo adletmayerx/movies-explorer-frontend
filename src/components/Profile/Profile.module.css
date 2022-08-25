@@ -33,6 +33,13 @@
   padding: 15px 0 0;
 }
 
+.profile__input {
+  background: none;
+  border: none;
+  color: var(--color-white-text);
+  text-align: right;
+}
+
 .profile__controls {
   margin-top: 380px;
   display: flex;
@@ -61,7 +68,6 @@
   opacity: 0.7;
 }
 
-
 @media screen and (min-width: 768px) {
   .profile {
     padding: 240px 180px 270px;
@@ -71,11 +77,9 @@
     margin-top: 95px;
   }
 
-
   .profile__controls {
     margin-top: 210px;
   }
-
 }
 
 @media screen and (min-width: 1280px) {
@@ -86,7 +90,6 @@
   .profile__info {
     margin-top: 125px;
   }
-
 
   .profile__controls {
     margin-top: 220px;
