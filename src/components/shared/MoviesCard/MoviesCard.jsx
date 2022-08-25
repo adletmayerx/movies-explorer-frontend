@@ -3,7 +3,21 @@ import styles from "./MoviesCard.module.css";
 import { Button } from "../";
 import { MemoNotSavedIcon, MemoSavedIcon } from "../../icons";
 
-const MoviesCard = ({ image, nameRU, duration, isSaved, id, handleSaveButtonClick }) => {
+const MoviesCard = ({
+  nameRU,
+  nameEN,
+  description,
+  director,
+  country,
+  year,
+  duration,
+  image,
+  movieId,
+  trailerLink,
+  thumbnail,
+  isSaved,
+  handleSaveButtonClick,
+}) => {
   const formatDuration = () => {
     let mins = duration;
     let hours = 0;
@@ -18,13 +32,25 @@ const MoviesCard = ({ image, nameRU, duration, isSaved, id, handleSaveButtonClic
   const formattedDuration = formatDuration();
 
   const onSaveButtonClick = () => {
-    handleSaveButtonClick(id);
+    handleSaveButtonClick(
+      nameRU,
+      nameEN,
+      description,
+      director,
+      country,
+      year,
+      duration,
+      image,
+      trailerLink,
+      thumbnail,
+      movieId,
+    );
   };
 
   return (
     <div className={styles.card}>
       <img
-        src={`https://api.nomoreparties.co/${image.url}`}
+        src={`https://api.nomoreparties.co/${image}`}
         alt="постер фильма"
         className={styles.card__image}
       />
@@ -42,7 +68,8 @@ const MoviesCard = ({ image, nameRU, duration, isSaved, id, handleSaveButtonClic
         ) : (
           <Button
             className={styles.card__button}
-            icon={<MemoNotSavedIcon onClick={onSaveButtonClick} />}
+            icon={<MemoNotSavedIcon />}
+            onClick={onSaveButtonClick}
           />
         )}
       </div>

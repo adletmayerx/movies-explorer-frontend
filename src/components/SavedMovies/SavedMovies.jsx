@@ -1,37 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./SavedMovies.module.css";
 import { SearchForm, SavedMoviesList } from "../";
-import movieImage from "../../images/movies-card-image.png";
+import { moviesApi, mainApi } from "../../utils/api";
 
 const SavedMovies = () => {
-  const cards = [
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: true,
-      id: 1,
-    },
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: true,
-      id: 2,
-    },
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: false,
-      id: 3,
-    },
-  ];
+  const [cards, setCards] = useState([]);
 
+  const handleDeleteButtonClick = (id) => {
+    mainApi
+      .deleteMovie(id)
+      .then((res) => {
+        setCards((prev) => prev.filter((card) => card !== res));
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies()
+      .then((res) => {
+        setCards(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
   return (
     <main className={styles.movies}>
       <SearchForm />
-      <SavedMoviesList cards={cards} />
+      <SavedMoviesList cards={cards} handleDeleteButtonClick={handleDeleteButtonClick} />
     </main>
   );
 };

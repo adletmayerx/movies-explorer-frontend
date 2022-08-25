@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect, useCallback } from "react";
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { ProtectedRoute } from "../../components";
@@ -18,7 +18,7 @@ const App = () => {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false); //todo
-  const { currentUser, setCurrentUser } = useContext(currentUserContext);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleRegister = (name, email, password) => {
     mainApi
@@ -39,18 +39,24 @@ const App = () => {
       })
       .catch((e) => console.error(e));
   };
-  const authorizeUser = () => {
+
+  const authorizeUser = useCallback(() => {
     mainApi
       .getUserInfo()
       .then((res) => {
-        console.log(res);
         setCurrentUser(res);
         setIsLoggedIn(true);
-        debugger;
         navigate("/movies");
       })
       .catch((e) => console.error(e));
-  };
+  }, [navigate, setCurrentUser]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      authorizeUser();
+    }
+  }, [authorizeUser, isLoggedIn]);
+
   return (
     <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
@@ -69,7 +75,7 @@ const App = () => {
             element={<ProtectedRoute loggedIn={isLoggedIn} component={ProfilePage} />}
           />
           <Route path="/signup" element={<RegisterPage handleRegister={handleRegister} />} />
-          <Route path="/signin" element={<LoginPage handleLogin={handleLogin}/>} />
+          <Route path="/signin" element={<LoginPage handleLogin={handleLogin} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

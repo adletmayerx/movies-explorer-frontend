@@ -41,6 +41,15 @@
   color: var(--color-suva-grey-text);
 }
 
+.card__button {
+  padding-top: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: none;
+  border: none;
+}
+
 @media screen and (min-width: 768px) {
   .card__image {
     width: 339px;

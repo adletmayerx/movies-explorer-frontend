@@ -72,7 +72,7 @@ class MainApi {
     year,
     duration,
     image,
-    trailer,
+    trailerLink,
     thumbnail,
     movieId
   ) {
@@ -90,9 +90,9 @@ class MainApi {
         country,
         year,
         duration,
-        image,
-        trailer,
-        thumbnail,
+        image: `https://api.nomoreparties.co/${image}`,
+        trailerLink,
+        thumbnail: `https://api.nomoreparties.co/${thumbnail}`,
         movieId,
       }),
     }).then(this.checkResult);
@@ -105,8 +105,8 @@ class MainApi {
     }).then(this.checkResult);
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+  deleteMovie(id) {
+    return fetch(`${this._url}/movies/${id}`, {
       method: "DELETE",
       credentials: "include",
       headers: {

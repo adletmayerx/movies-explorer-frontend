@@ -2,18 +2,51 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      return;
+    }
+
+    handleLogin(email, password);
+  };
+
   return (
     <div className={styles.login}>
-      <form name="login-form" className={styles.login__form}>
+      <form name="login-form" className={styles.login__form} onSubmit={onSubmit}>
         <label className={styles.login__label}>
           <span className={styles.login__span}>E-mail</span>
-          <input type="email" name="login-email" className={styles.login__input} />
+          <input
+            type="email"
+            name="login-email"
+            className={styles.login__input}
+            value={email}
+            onChange={handleEmailChange}
+          />
           <span className={styles.login__error}>Имя</span>
         </label>
         <label className={styles.login__label}>
           <span className={styles.login__span}>Пароль</span>
-          <input type="password" name="login-password" className={styles.login__input} />
+          <input
+            type="password"
+            name="login-password"
+            className={styles.login__input}
+            value={password}
+            onChange={handlePasswordChange}
+          />
           <span className={styles.login__error}>Имя</span>
         </label>
         <button type="submit" className={styles.login__submit}>

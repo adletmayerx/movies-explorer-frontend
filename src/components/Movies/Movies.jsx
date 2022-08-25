@@ -8,8 +8,7 @@ import currentUserContext from "../../contexts/current-user-context";
 import filterResults from "../../utils/filter-results";
 
 const Movies = () => {
-  // const { currentUser } = useContext(currentUserContext);
-  const currentUser = { id: 1 };
+  const { currentUser } = useContext(currentUserContext);
   const [cards, setCards] = useState([]);
   const [cardsForRender, setCardsForRender] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -23,12 +22,12 @@ const Movies = () => {
       .then((res) => {
         const movies = defineLikes(res, savedCards);
 
-        localStorage.setItem(`${currentUser.id}_movies`, JSON.stringify(movies));
-        localStorage.setItem(`${currentUser.id}_searchQuery`, JSON.stringify(inputValue));
-        localStorage.setItem(`${currentUser.id}_isShortFilms`, JSON.stringify(isShortFilms));
-
+        localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(movies));
+        localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
+        localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
         const filteredMovies = filterResults(movies, inputValue, isShortFilms);
         setCardsForRender(setInitialCards(filteredMovies));
+
         setCards(filteredMovies);
       })
       .catch((e) => {
@@ -38,19 +37,25 @@ const Movies = () => {
 
   const setInitialCards = (cards) => {
     if (window.innerWidth >= 1280) {
-      cards.splice(0, 12);
+      return cards.splice(0, 12);
     } else if (window.innerWidth >= 768) {
-      cards.splice(0, 8);
+      return cards.splice(0, 8);
     } else {
-      cards.splice(0, 5);
+      return cards.splice(0, 5);
     }
   };
 
-  const defineLikes = (cards, savedCards) =>
-    cards.map((card) => {
-      card.isSaved = savedCards.some((savedCard) => savedCard.id === card.id);
-      return card;
+  const defineLikes = (cards, savedCards) => {
+    return cards.map((card) => {
+      const isSaved = savedCards.find((savedCard) => savedCard.movieId === card.id);
+      if (isSaved) {
+        debugger;
+        return { ...card, isSaved };
+      } else {
+        return card;
+      }
     });
+  };
 
   const handleLoadButtonClick = () => {
     if (cards.length === 0) {
@@ -84,7 +89,7 @@ const Movies = () => {
     year,
     duration,
     image,
-    trailer,
+    trailerLink,
     thumbnail,
     movieId
   ) => {
@@ -111,7 +116,7 @@ const Movies = () => {
           year,
           duration,
           image,
-          trailer,
+          trailerLink,
           thumbnail,
           movieId
         )
