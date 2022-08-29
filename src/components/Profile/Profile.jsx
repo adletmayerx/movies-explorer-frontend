@@ -5,7 +5,7 @@ import { AuthTitle } from "../shared";
 import currentUserContext from "../../contexts/current-user-context";
 import { mainApi } from "../../utils/api";
 
-const Profile = ({ handleUpdateUser }) => {
+const Profile = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -34,6 +34,7 @@ const Profile = ({ handleUpdateUser }) => {
   const onLogOutButtonClick = () => {
     mainApi.logOut().then((res) => {
       navigate("/");
+      setIsLoggedIn(false)
     });
   };
 

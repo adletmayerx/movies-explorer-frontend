@@ -17,7 +17,7 @@ import currentUserContext from "../../contexts/current-user-context";
 const App = () => {
   const navigate = useNavigate();
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); //todo
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
   const handleRegister = (name, email, password) => {
@@ -72,7 +72,13 @@ const App = () => {
           />
           <Route
             path="/profile"
-            element={<ProtectedRoute loggedIn={isLoggedIn} component={ProfilePage} />}
+            element={
+              <ProtectedRoute
+                loggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+                component={ProfilePage}
+              />
+            }
           />
           <Route path="/signup" element={<RegisterPage handleRegister={handleRegister} />} />
           <Route path="/signin" element={<LoginPage handleLogin={handleLogin} />} />
