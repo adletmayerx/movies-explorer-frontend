@@ -6,7 +6,7 @@ const SavedMoviesList = ({ cards, handleDeleteButtonClick }) => {
   return (
     <div className={styles.cards}>
       <ul className={styles.cards__list}>
-        {cards.map(({ image, nameRU, duration, movieId, _id }) => {
+        {cards.map(({ image, nameRU, duration, movieId, _id, trailerLink }) => {
           return (
             <li className={styles["cards__list - item"]} key={_id}>
               <SavedMoviesCard
@@ -15,6 +15,7 @@ const SavedMoviesList = ({ cards, handleDeleteButtonClick }) => {
                 duration={duration}
                 movieId={movieId}
                 handleDeleteButtonClick={handleDeleteButtonClick}
+                trailerLink={trailerLink}
                 id={_id}
               />
             </li>

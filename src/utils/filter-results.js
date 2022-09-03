@@ -1,6 +1,9 @@
 export default function filterResults(data, inputQuery, isShortFilmsSelected) {
   let result = data.filter((movie) => {
-    return movie.nameRU?.includes(inputQuery) || movie.nameEN?.includes(inputQuery);
+    return (
+      movie.nameRU.toLowerString()?.includes(inputQuery.toLowerString()) ||
+      movie.nameEN?.includes(inputQuery.toLowerString())
+    );
   });
 
   if (isShortFilmsSelected) {

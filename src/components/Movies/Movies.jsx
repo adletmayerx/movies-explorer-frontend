@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useCallback } from "react";
 import styles from "./Movies.module.css";
 import cn from "classnames";
-import { SearchForm } from "../";
+import { SearchForm, Preloader } from "../";
 import { Button, MoviesCardList } from "../shared";
 import { moviesApi, mainApi } from "../../utils/api";
 import currentUserContext from "../../contexts/current-user-context";
@@ -9,12 +9,16 @@ import filterResults from "../../utils/filter-results";
 
 const Movies = () => {
   const { currentUser } = useContext(currentUserContext);
+
+  const [allMovies, setAllMovies] = useState([]);
   const [cards, setCards] = useState([]);
   const [cardsForRender, setCardsForRender] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [isShortFilms, setIsShortFilms] = useState(false);
   const [isLoadButtonVisible, setIsLoadButtonsVisible] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const savedMovies = JSON.parse(localStorage.getItem(`${currentUser._id}_movies`));
@@ -30,22 +34,57 @@ const Movies = () => {
   }, [currentUser._id]);
 
   const handleSearchFormSubmit = () => {
-    moviesApi
-      .getMovies()
-      .then((res) => {
-        const movies = defineLikes(res, savedCards);
-        const filteredMovies = filterResults(movies, inputValue, isShortFilms);
+    if (inputValue === "") {
+      setMessage("Нужно ввести ключевое слово");
+      return;
+    }
 
-        localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
-        localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
-        localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
-        setCardsForRender(setInitialCards(filteredMovies));
+    setIsLoading(true);
 
-        setCards(filteredMovies);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
+    if (allMovies.length === 0) {
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          setAllMovies(res);
+          const movies = defineLikes(res, savedCards);
+          const filteredMovies = filterResults(movies, inputValue, isShortFilms);
+
+          if (filteredMovies.length === 0) {
+            setMessage("Ничего не найдено");
+          } else {
+            setMessage("");
+          }
+
+          localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
+          localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
+          localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
+          setCardsForRender(setInitialCards(filteredMovies));
+
+          setCards(filteredMovies);
+        })
+        .catch((e) => {
+          console.error(e);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      const movies = defineLikes(allMovies, savedCards);
+      const filteredMovies = filterResults(movies, inputValue, isShortFilms);
+
+      if (filteredMovies.length === 0) {
+        setMessage("Ничего не найдено");
+      } else {
+        setMessage("");
+      }
+
+      localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
+      localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
+      localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
+      setCardsForRender(setInitialCards(filteredMovies));
+
+      setCards(filteredMovies);
+    }
   };
 
   const setInitialCards = (cards) => {
@@ -216,7 +255,12 @@ const Movies = () => {
         inputValue={inputValue}
         setInputValue={setInputValue}
       />
-      <MoviesCardList cards={cardsForRender} handleSaveButtonClick={handleSaveButtonClick} />
+      {!isLoading && <p className={styles["movies__message"]}>{message}</p>}
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <MoviesCardList cards={cardsForRender} handleSaveButtonClick={handleSaveButtonClick} />
+      )}
       <Button
         type="button"
         className={cn(styles["movies__more-btn"], {

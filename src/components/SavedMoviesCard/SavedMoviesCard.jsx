@@ -3,7 +3,7 @@ import styles from "./SavedMoviesCard.module.css";
 import { MemoCrossIcon } from "../icons";
 import { Button } from "../shared";
 
-const SavedMoviesCard = ({ image, nameRU, duration, id, handleDeleteButtonClick }) => {
+const SavedMoviesCard = ({ image, nameRU, duration, trailerLink, id, handleDeleteButtonClick }) => {
   const formatDuration = () => {
     let mins = duration;
     let hours = 0;
@@ -21,7 +21,9 @@ const SavedMoviesCard = ({ image, nameRU, duration, id, handleDeleteButtonClick 
   const formattedDuration = formatDuration();
   return (
     <div className={styles.card}>
-      <img src={image} alt={`постер фильма ${nameRU}`} className={styles.card__image} />
+      <a href={trailerLink || "https://www.youtube.com/"} target="_blank" rel="noreferrer">
+        <img src={image} alt={`постер фильма ${nameRU}`} className={styles.card__image} />
+      </a>
       <div className={styles.card__footer}>
         <div className={styles.card__info}>
           <h3 className={styles.card__title}>{nameRU}</h3>

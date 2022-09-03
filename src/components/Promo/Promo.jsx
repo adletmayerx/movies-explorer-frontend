@@ -3,10 +3,8 @@ import styles from "./Promo.module.css";
 import { Header, Button, HeaderContent } from "../shared";
 import { AuthNav } from "../";
 import promoLogo from "../../images/promo-logo.png";
-import { useNavigate } from "react-router-dom";
 
 const Promo = ({ isLoggedIn }) => {
-  const navigate = useNavigate();
 
   return (
     <section className={styles.promo}>
@@ -16,7 +14,6 @@ const Promo = ({ isLoggedIn }) => {
           src={promoLogo}
           alt="лого лэндинга"
           className={styles.promo__logo}
-          onClick={() => navigate("/")}
         />
         <div className={styles["promo__text-container"]}>
           <h1 className={styles.promo__title}>

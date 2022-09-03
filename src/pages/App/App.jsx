@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import "./App.css";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ProtectedRoute } from "../../components";
 import {
   HomePage,
@@ -15,7 +15,6 @@ import { mainApi } from "../../utils/api";
 import currentUserContext from "../../contexts/current-user-context";
 
 const App = () => {
-  const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -46,10 +45,9 @@ const App = () => {
       .then((res) => {
         setCurrentUser(res);
         setIsLoggedIn(true);
-        navigate("/movies");
       })
       .catch((e) => console.error(e));
-  }, [navigate, setCurrentUser]);
+  }, [setCurrentUser]);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -80,8 +78,8 @@ const App = () => {
               />
             }
           />
-          <Route path="/signup" element={<RegisterPage handleRegister={handleRegister} />} />
-          <Route path="/signin" element={<LoginPage handleLogin={handleLogin} />} />
+          <Route path="/signup" element={<RegisterPage handleRegister={handleRegister} isLoggedIn={isLoggedIn} />} />
+          <Route path="/signin" element={<LoginPage handleLogin={handleLogin} isLoggedIn={isLoggedIn} />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

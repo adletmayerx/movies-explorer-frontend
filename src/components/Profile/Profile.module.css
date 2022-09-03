@@ -1,4 +1,5 @@
 .profile {
+  position: relative;
   margin: 0 auto;
   max-width: 1280px;
   display: flex;
@@ -58,6 +59,10 @@
   background: transparent;
   cursor: pointer;
   transition: opacity 0.2s ease-in;
+}
+
+.profile__btn_disabled {
+  color: var(--color-grey-text);
 }
 
 .profile__btn:last-of-type {

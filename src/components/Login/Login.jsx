@@ -1,10 +1,16 @@
-import React, { useState } from "react";
-import styles from "./Login.module.css";
+import React, { useState, useEffect } from "react";
+import cn from "classnames";
 import { Link } from "react-router-dom";
+import * as EmailValidator from "email-validator";
+import styles from "./Login.module.css";
 
 const Login = ({ handleLogin }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(false);
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -24,6 +30,30 @@ const Login = ({ handleLogin }) => {
     handleLogin(email, password);
   };
 
+  useEffect(() => {
+    if (!emailIsValid || !passwordIsValid) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  }, [emailIsValid, passwordIsValid]);
+
+  useEffect(() => {
+    if (!EmailValidator.validate(email)) {
+      setEmailIsValid(false);
+    } else {
+      setEmailIsValid(true);
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password.length > 30 || password.length < 2) {
+      setPasswordIsValid(false);
+    } else {
+      setPasswordIsValid(true);
+    }
+  }, [password.length]);
+
   return (
     <div className={styles.login}>
       <form name="login-form" className={styles.login__form} onSubmit={onSubmit}>
@@ -37,7 +67,9 @@ const Login = ({ handleLogin }) => {
             onChange={handleEmailChange}
             required
           />
-          <span className={styles.login__error}>Имя</span>
+          {!emailIsValid && (
+            <span className={styles.login__error}>Пожалуйста, введите корректный email-адрес</span>
+          )}
         </label>
         <label className={styles.login__label}>
           <span className={styles.login__span}>Пароль</span>
@@ -49,9 +81,19 @@ const Login = ({ handleLogin }) => {
             onChange={handlePasswordChange}
             required
           />
-          <span className={styles.login__error}>Имя</span>
+          {!passwordIsValid && (
+            <span className={styles.login__error}>
+              Минимальное число символов - 2. Максимальное - 30
+            </span>
+          )}
         </label>
-        <button type="submit" className={styles.login__submit}>
+        <button
+          type="submit"
+          disabled={!isValid}
+          className={cn(styles.login__submit, {
+            [styles["login__submit_disabled"]]: !isValid,
+          })}
+        >
           Войти
         </button>
         <p className={styles["login__link-container"]}>
