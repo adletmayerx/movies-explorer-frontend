@@ -31,7 +31,7 @@ const Movies = () => {
       setInputValue(savedQuery);
       setIsShortFilms(savedToggleValue);
     }
-  }, [currentUser._id]);
+  }, [currentUser]);
 
   const handleSearchFormSubmit = () => {
     if (inputValue === "") {
