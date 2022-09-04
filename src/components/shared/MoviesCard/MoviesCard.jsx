@@ -37,7 +37,7 @@ const MoviesCard = ({
       nameEN,
       description,
       director,
-      country,
+      country ?? "no country",
       year,
       duration,
       image,

@@ -15,7 +15,6 @@ import { mainApi } from "../../utils/api";
 import currentUserContext from "../../contexts/current-user-context";
 
 const App = () => {
-
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -59,7 +58,7 @@ const App = () => {
     <currentUserContext.Provider value={{ currentUser, setCurrentUser }}>
       <div className="App">
         <Routes>
-          <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
+          <Route exact path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
           <Route
             path="/movies"
             element={<ProtectedRoute loggedIn={isLoggedIn} component={MoviesPage} />}
@@ -78,8 +77,14 @@ const App = () => {
               />
             }
           />
-          <Route path="/signup" element={<RegisterPage handleRegister={handleRegister} isLoggedIn={isLoggedIn} />} />
-          <Route path="/signin" element={<LoginPage handleLogin={handleLogin} isLoggedIn={isLoggedIn} />} />
+          <Route
+            path="/signup"
+            element={<RegisterPage handleRegister={handleRegister} isLoggedIn={isLoggedIn} />}
+          />
+          <Route
+            path="/signin"
+            element={<LoginPage handleLogin={handleLogin} isLoggedIn={isLoggedIn} />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

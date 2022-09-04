@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import styles from "./Switch.module.css";
 import cn from "classnames";
 
-const Switch = ({ className, setIsShortFilms, isShortFilms }) => {
+const Switch = ({ className, isShortFilms, handleSwitchClick }) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Switch = ({ className, setIsShortFilms, isShortFilms }) => {
         className={styles["switch__checkbox"]}
         id={`react-switch-new`}
         type="checkbox"
-        onClick={() => setIsShortFilms(!isShortFilms)}
+        onClick={handleSwitchClick}
       />
       <label className={styles["switch__label"]} htmlFor={`react-switch-new`}>
         <span className={styles["switch__button"]} />

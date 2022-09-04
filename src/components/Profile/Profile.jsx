@@ -53,6 +53,9 @@ const Profile = ({ setIsLoggedIn }) => {
     mainApi
       .logOut()
       .then(() => {
+        localStorage.removeItem(`${currentUser._id}_movies`);
+        localStorage.removeItem(`${currentUser._id}_searchQuery`);
+        localStorage.removeItem(`${currentUser._id}_isShortFilms`);
         navigate("/");
         setIsLoggedIn(false);
       })

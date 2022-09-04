@@ -46,21 +46,7 @@ const Movies = () => {
         .getMovies()
         .then((res) => {
           setAllMovies(res);
-          const movies = defineLikes(res, savedCards);
-          const filteredMovies = filterResults(movies, inputValue, isShortFilms);
-
-          if (filteredMovies.length === 0) {
-            setMessage("Ничего не найдено");
-          } else {
-            setMessage("");
-          }
-
-          localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
-          localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
-          localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
-          setCardsForRender(setInitialCards(filteredMovies));
-
-          setCards(filteredMovies);
+          getFilteredMovies(res, isShortFilms);
         })
         .catch((e) => {
           console.error(e);
@@ -69,22 +55,30 @@ const Movies = () => {
           setIsLoading(false);
         });
     } else {
-      const movies = defineLikes(allMovies, savedCards);
-      const filteredMovies = filterResults(movies, inputValue, isShortFilms);
-
-      if (filteredMovies.length === 0) {
-        setMessage("Ничего не найдено");
-      } else {
-        setMessage("");
-      }
-
-      localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(filteredMovies));
-      localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
-      localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
-      setCardsForRender(setInitialCards(filteredMovies));
-
-      setCards(filteredMovies);
+      getFilteredMovies(allMovies, isShortFilms);
+      setIsLoading(false);
     }
+  };
+
+  const getFilteredMovies = (_movies, isShortFilms) => {
+    const movies = defineLikes(_movies, savedCards);
+    const filteredMovies = filterResults(movies, inputValue, isShortFilms);
+
+    if (filteredMovies.length === 0) {
+      setMessage("Ничего не найдено");
+    } else {
+      setMessage("");
+    }
+
+    saveQueryAndMovies(filteredMovies);
+    setCardsForRender(setInitialCards(filteredMovies));
+    setCards(filteredMovies);
+  };
+
+  const saveQueryAndMovies = (movies) => {
+    localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(movies));
+    localStorage.setItem(`${currentUser._id}_searchQuery`, JSON.stringify(inputValue));
+    localStorage.setItem(`${currentUser._id}_isShortFilms`, JSON.stringify(isShortFilms));
   };
 
   const setInitialCards = (cards) => {
@@ -149,11 +143,17 @@ const Movies = () => {
     if (savedCard) {
       mainApi
         .deleteMovie(savedCard._id)
-        .then((res) => {
+        .then(() => {
           setSavedCards((prev) => prev.filter((card) => card._id !== savedCard._id));
           setCardsForRender((prev) =>
             prev.map((card) => (card.id === movieId ? { ...card, isSaved: false } : card))
           );
+
+          let savedMovies = JSON.parse(localStorage.getItem(`${currentUser._id}_movies`));
+          savedMovies = savedMovies.map((card) =>
+            card.id === movieId ? { ...card, isSaved: false } : card
+          );
+          localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(savedMovies));
         })
         .catch((e) => {
           console.error(e);
@@ -174,15 +174,31 @@ const Movies = () => {
           movieId
         )
         .then((res) => {
-          setSavedCards((prev) => prev.push(res));
+          setSavedCards((prev) => [...prev, res]);
+
           setCardsForRender((prev) =>
             prev.map((card) => (card.id === movieId ? { ...card, isSaved: true } : card))
           );
+          let savedMovies = JSON.parse(localStorage.getItem(`${currentUser._id}_movies`));
+          savedMovies = savedMovies.map((card) =>
+            card.id === movieId ? { ...card, isSaved: true } : card
+          );
+          localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(savedMovies));
         })
         .catch((e) => {
           console.error(e);
         });
     }
+  };
+
+  const handleSwitchClick = () => {
+    setIsShortFilms(!isShortFilms);
+
+    if (allMovies.length === 0) {
+      return;
+    }
+
+    getFilteredMovies(allMovies, !isShortFilms);
   };
 
   useEffect(() => {
@@ -246,12 +262,27 @@ const Movies = () => {
     }
   }, [cards]);
 
+  useEffect(() => {
+    const savedQuery = JSON.parse(localStorage.getItem(`${currentUser._id}_searchQuery`));
+
+    if (savedQuery) {
+      moviesApi
+        .getMovies()
+        .then((res) => {
+          setAllMovies(res);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    }
+  }, [currentUser._id]);
+
   return (
     <main className={styles.movies}>
       <SearchForm
         handleSearchFormSubmit={handleSearchFormSubmit}
         isShortFilms={isShortFilms}
-        setIsShortFilms={setIsShortFilms}
+        handleSwitchClick={handleSwitchClick}
         inputValue={inputValue}
         setInputValue={setInputValue}
       />

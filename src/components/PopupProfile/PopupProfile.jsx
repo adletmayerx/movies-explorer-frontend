@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "./PopupProfile.module.css";
-import { MemoBigCrossIcon } from "../icons";
-import { ButtonWithIcon } from "../shared";
 
 const PopupProfile = ({ message, onCloseButtonClick }) => {
   return (

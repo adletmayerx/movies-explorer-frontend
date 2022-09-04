@@ -5,7 +5,6 @@ import * as EmailValidator from "email-validator";
 import styles from "./Login.module.css";
 
 const Login = ({ handleLogin }) => {
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(false);
