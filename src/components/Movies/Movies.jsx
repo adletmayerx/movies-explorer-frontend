@@ -192,6 +192,7 @@ const Movies = () => {
   };
 
   const handleSwitchClick = () => {
+    debugger;
     setIsShortFilms(!isShortFilms);
 
     if (allMovies.length === 0) {
@@ -263,18 +264,16 @@ const Movies = () => {
   }, [cards]);
 
   useEffect(() => {
-    const savedQuery = JSON.parse(localStorage.getItem(`${currentUser._id}_searchQuery`));
+    const removeAllMoviesData = () => {
+      localStorage.removeItem(`${currentUser._id}_movies`);
+      localStorage.removeItem(`${currentUser._id}_searchQuery`);
+      localStorage.removeItem(`${currentUser._id}_isShortFilms`);
+    };
 
-    if (savedQuery) {
-      moviesApi
-        .getMovies()
-        .then((res) => {
-          setAllMovies(res);
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    }
+    window.addEventListener("beforeunload", removeAllMoviesData);
+    return () => {
+      window.removeEventListener("beforeunload", removeAllMoviesData);
+    };
   }, [currentUser._id]);
 
   return (

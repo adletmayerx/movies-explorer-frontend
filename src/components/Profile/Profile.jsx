@@ -19,7 +19,7 @@ const Profile = ({ setIsLoggedIn }) => {
   const [popupMessage, setPopupMessage] = useState("");
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const { currentUser } = useContext(currentUserContext);
+  const { currentUser, setCurrentUser} = useContext(currentUserContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -38,7 +38,8 @@ const Profile = ({ setIsLoggedIn }) => {
 
     mainApi
       .updateUserInfo(name, email)
-      .then(() => {
+      .then((res) => {
+        setCurrentUser(res);
         setIsPopupOpen(true);
         setPopupMessage("Успешно!");
       })
@@ -101,7 +102,7 @@ const Profile = ({ setIsLoggedIn }) => {
 
   return (
     <main className={styles.profile}>
-      <AuthTitle>Привет, Артур!</AuthTitle>
+      <AuthTitle>Привет, {currentUser.name}!</AuthTitle>
       <form onSubmit={onSubmit}>
         <div className={styles.profile__info}>
           <div className={styles.profile__row}>

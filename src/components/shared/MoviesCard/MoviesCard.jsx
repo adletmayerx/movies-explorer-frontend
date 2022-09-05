@@ -33,16 +33,16 @@ const MoviesCard = ({
 
   const onSaveButtonClick = () => {
     handleSaveButtonClick(
-      nameRU,
-      nameEN,
-      description,
-      director,
-      country ?? "no country",
-      year,
+      nameRU ?? "none",
+      nameEN ?? "none",
+      description ?? "none",
+      director ?? "none",
+      country ?? "none",
+      year ?? "none",
       duration,
-      image,
-      trailerLink,
-      thumbnail,
+      image ?? "https://tinyurl.com/2ubthy46",
+      trailerLink ?? "https://www.youtube.com/",
+      thumbnail ?? "none",
       movieId
     );
   };
