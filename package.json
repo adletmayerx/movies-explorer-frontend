@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "classnames": "^2.3.1",
+    "email-validator": "^2.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -17,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && scp -r ./build/* artursadrtdinov@84.201.140.102:/home/artursadrtdinov/diploma-frontend"
   },
   "eslintConfig": {
     "extends": [

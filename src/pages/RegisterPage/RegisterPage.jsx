@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Register, AuthHeader } from "../../components";
+import { useNavigate } from "react-router-dom";
 
-const RegisterPage = () => {
+const RegisterPage = ({ handleRegister, isLoggedIn }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/movies");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <>
       <AuthHeader />
-      <Register />
+      <Register handleRegister={handleRegister} />
     </>
   );
 };

@@ -34,6 +34,7 @@
   text-align: center;
   color: var(--color-blue-btn-bg);
   text-decoration: none;
+  background: none;
 }
 
 @media screen and (min-width: 768px) {

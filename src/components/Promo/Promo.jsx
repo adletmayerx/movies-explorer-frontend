@@ -1,15 +1,14 @@
 import React from "react";
 import styles from "./Promo.module.css";
-import { Header, Button } from "../shared";
+import { Header, Button, HeaderContent } from "../shared";
 import { AuthNav } from "../";
 import promoLogo from "../../images/promo-logo.png";
 
-const Promo = () => {
+const Promo = ({ isLoggedIn }) => {
+
   return (
     <section className={styles.promo}>
-      <Header>
-        <AuthNav />
-      </Header>
+      <Header>{isLoggedIn ? <HeaderContent /> : <AuthNav />}</Header>
       <div className={styles.promo__container}>
         <img
           src={promoLogo}
@@ -21,14 +20,9 @@ const Promo = () => {
             Учебный проект студента факультета Веб-разработки.
           </h1>
           <p className={styles["promo__sub-title"]}>
-            Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его
-            создателя.
+            Листайте ниже, чтобы узнать больше про этот проект и&nbsp;его создателя.
           </p>
-          <Button
-            className={styles.promo__btn}
-            text="Узнать больше"
-            type="button"
-          />
+          <Button className={styles.promo__btn} text="Узнать больше" type="button" />
         </div>
       </div>
     </section>

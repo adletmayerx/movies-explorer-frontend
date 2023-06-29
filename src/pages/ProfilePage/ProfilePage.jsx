@@ -2,13 +2,13 @@ import React from "react";
 import { Profile } from "../../components";
 import { Header, HeaderContent } from "../../components/shared";
 
-const ProfilePage = () => {
+const ProfilePage = ({ setIsLoggedIn }) => {
   return (
     <>
       <Header>
         <HeaderContent />
       </Header>
-      <Profile />
+      <Profile setIsLoggedIn={setIsLoggedIn} />
     </>
   );
 };

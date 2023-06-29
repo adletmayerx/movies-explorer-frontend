@@ -1,37 +1,70 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./SavedMovies.module.css";
 import { SearchForm, SavedMoviesList } from "../";
-import movieImage from "../../images/movies-card-image.png";
+import { mainApi } from "../../utils/api";
+import currentUserContext from "../../contexts/current-user-context";
+import filterResults from "../../utils/filter-results";
 
 const SavedMovies = () => {
-  const cards = [
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: true,
-      id: 1,
-    },
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: true,
-      id: 2,
-    },
-    {
-      image: movieImage,
-      title: "33 слова о дизайне",
-      duration: "1ч 47м",
-      isSaved: false,
-      id: 3,
-    },
-  ];
+  const { currentUser } = useContext(currentUserContext);
+  const [cards, setCards] = useState([]);
+  const [cardsForRender, setCardsForRender] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [isShortFilms, setIsShortFilms] = useState(false);
 
+  const handleDeleteButtonClick = (id) => {
+    mainApi
+      .deleteMovie(id)
+      .then((res) => {
+        setCards((prev) => prev.filter((card) => card._id !== id));
+
+        const deletedMovie = cards.find((card) => card._id === id);
+        let savedMovies = JSON.parse(localStorage.getItem(`${currentUser._id}_movies`));
+
+        savedMovies = savedMovies.map((card) =>
+          card.id === deletedMovie.movieId ? { ...card, isSaved: false } : card
+        );
+        localStorage.setItem(`${currentUser._id}_movies`, JSON.stringify(savedMovies));
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
+
+  const handleSearchFormSubmit = () => {
+    const filteredMovies = filterResults(cards, inputValue, isShortFilms);
+    setCardsForRender(filteredMovies);
+  };
+
+  const handleSwitchClick = () => {
+    setIsShortFilms(!isShortFilms);
+
+    const filteredMovies = filterResults(cards, inputValue, !isShortFilms);
+
+    setCardsForRender(filteredMovies);
+  };
+
+  useEffect(() => {
+    mainApi
+      .getSavedMovies()
+      .then((res) => {
+        setCards(res);
+        setCardsForRender(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }, []);
   return (
     <main className={styles.movies}>
-      <SearchForm />
-      <SavedMoviesList cards={cards} />
+      <SearchForm
+        handleSearchFormSubmit={handleSearchFormSubmit}
+        isShortFilms={isShortFilms}
+        handleSwitchClick={handleSwitchClick}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+      />
+      <SavedMoviesList cards={cardsForRender} handleDeleteButtonClick={handleDeleteButtonClick} />
     </main>
   );
 };

@@ -2,18 +2,21 @@ import React from "react";
 import styles from "./SavedMoviesList.module.css";
 import { SavedMoviesCard } from "../";
 
-const SavedMoviesList = ({ cards }) => {
+const SavedMoviesList = ({ cards, handleDeleteButtonClick }) => {
   return (
     <div className={styles.cards}>
       <ul className={styles.cards__list}>
-        {cards.map(({ image, title, duration, isSaved, id }) => {
+        {cards.map(({ image, nameRU, duration, movieId, _id, trailerLink }) => {
           return (
-            <li className={styles["cards__list - item"]} key={id}>
+            <li className={styles["cards__list - item"]} key={_id}>
               <SavedMoviesCard
                 image={image}
-                title={title}
+                nameRU={nameRU}
                 duration={duration}
-                isSaved={isSaved}
+                movieId={movieId}
+                handleDeleteButtonClick={handleDeleteButtonClick}
+                trailerLink={trailerLink}
+                id={_id}
               />
             </li>
           );

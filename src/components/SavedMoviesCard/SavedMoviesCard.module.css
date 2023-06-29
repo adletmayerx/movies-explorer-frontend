@@ -31,6 +31,7 @@
   font-size: 12px;
   line-height: 15px;
   color: var(--color-white-text);
+  max-width: 200px;
 }
 
 .card__duration {
@@ -39,6 +40,15 @@
   font-size: 10px;
   line-height: 12px;
   color: var(--color-suva-grey-text);
+}
+
+.card__button {
+  padding-top: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: none;
+  border: none;
 }
 
 @media screen and (min-width: 768px) {
